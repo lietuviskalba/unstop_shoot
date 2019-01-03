@@ -7,7 +7,9 @@ public class BulletBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag.Equals("Side_wall"))
+        string otherTag = other.gameObject.tag;
+
+        if (otherTag.Equals("Side_wall") || otherTag.Equals("Ground_platform") || other.Equals("Player"))
         {
             Destroy(gameObject);
         }

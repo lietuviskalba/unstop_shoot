@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         //Set default values here
         spawnRate = 4f;
+        nextSpawn = spawnRate;
         minRate = 2f;
         maxRate = 15f;
     }

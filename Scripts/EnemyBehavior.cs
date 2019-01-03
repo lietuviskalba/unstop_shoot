@@ -8,13 +8,13 @@ public class EnemyBehavior : MonoBehaviour {
 
     Vector3 moveDir;
 
+    private string otherTag;
     [Range(0,20)]
     public float moveSpeed;
     [Range(0, 20)]
     public float jumpVelocity;
     private float fallMultiplier = 2.5f;
-    public int switchDir;
-    private bool hasLanded;
+    public float switchDir;
     private bool isMoving;
 
 	void Start () {
@@ -38,21 +38,23 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision other)
-    {        
-        if (other.gameObject.tag.Equals("Bullet"))
+    {
+        otherTag = other.gameObject.tag;
+
+        if (otherTag.Equals("Bullet"))
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag.Equals("Enemy"))
+        else if (otherTag.Equals("Enemy"))
         {
             ChangeDirOnHit();
         }
-        else if (other.gameObject.tag.Equals("Player"))
+        else if (otherTag.Equals("Player"))
         {
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag.Equals("Side_wall"))
+        else if (otherTag.Equals("Side_wall"))
         {
             ChangeDirOnHit();
         }
@@ -60,13 +62,14 @@ public class EnemyBehavior : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Jump_pad"))
+        otherTag = other.gameObject.tag;
+
+        if (otherTag.Equals("Jump_pad"))
         {
             isMoving = false;
-            hasLanded = false;
             JumpLaunch();
         }
-        else if (other.gameObject.tag.Equals("Ground_platform"))
+        else if (otherTag.Equals("Ground_platform"))
         {
             isMoving = true;
         }
@@ -74,7 +77,9 @@ public class EnemyBehavior : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag.Equals("Ground_platform"))
+        otherTag = other.gameObject.tag;
+
+        if (otherTag.Equals("Ground_platform"))
         {
             isMoving = false;
         }
@@ -93,7 +98,7 @@ public class EnemyBehavior : MonoBehaviour {
     }
     private void JumpLaunch()
     {
-        Vector3 jumpLaunchDir = new Vector3(GetMoveDir(), 1, 0);
+        Vector3 jumpLaunchDir = new Vector3(GetMoveDir() / 2, 1, 0);
         rb.velocity = jumpLaunchDir * jumpVelocity;
         if (rb.velocity.y < 0)
         {
@@ -101,11 +106,11 @@ public class EnemyBehavior : MonoBehaviour {
         }
     }
 
-    public void SetMoveDir(int dir)
+    public void SetMoveDir(float dir)
     {
         switchDir = dir;
     }
-    public int GetMoveDir()
+    public float GetMoveDir()
     {
         return switchDir;
     }
