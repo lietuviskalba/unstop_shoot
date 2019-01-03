@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour {
             nextSpawn = Time.time + spawnRate;
             spawnRate = Random.Range(minRate, maxRate);
             randDir = (int)Random.Range(0, 2) * 2 - 1;
-            enemy.GetComponent<EnemyBehavior>().SetMoveDir(randDir);
+            enemy.GetComponent<EnemyBehavior>().ChangeDirGS = randDir;
             Instantiate(enemy, transform.position, Quaternion.identity);
         }
     }

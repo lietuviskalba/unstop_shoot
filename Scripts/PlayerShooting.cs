@@ -15,6 +15,7 @@ public class PlayerShooting : MonoBehaviour {
 
     void Start()
     {
+        // For developing purposes, to disable/enable shooting
         player = GameObject.FindGameObjectWithTag("Player");
         hasShootStop = player.GetComponent<PlayerMover>().isShootingStoped;
     }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
-
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         string otherTag = other.gameObject.tag;
 
