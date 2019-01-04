@@ -33,8 +33,6 @@ public class Score : MonoBehaviour {
 
     private void WinLoseConditions()
     {
-        Debug.Log("Won condition: " + hasWon + " lost condition: " + hasLost);
-
         if (hasLost == true && hasWon == false)
         {
             EndLevelCard("GAME OVER \n (Reset Level)", Color.red);

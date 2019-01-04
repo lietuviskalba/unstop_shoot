@@ -39,6 +39,11 @@ public class EnemyBehavior : Character {
         else if (otherTag.Equals("Player"))
         {
             Score.hasLost = true;
+            GameObject[] uis = GameObject.FindGameObjectsWithTag("Level_UI");
+            foreach(GameObject ui in uis)
+            {
+                ui.SetActive(false);
+            }
             Destroy(other.gameObject);
         }
     }

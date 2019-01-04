@@ -15,6 +15,14 @@ public class JumppadActivation : MonoBehaviour {
         jump_pads = GameObject.FindGameObjectsWithTag("Jump_pad");
         PadActivationConfiguration(true, "Jump pad: ON", Color.green);
 	}
+
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            PadActivation();
+        }
+    }
 	
 	public void PadActivation()
     {
