@@ -169,10 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d156075d03731fc46804f20216c991c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 9.5
-  walkSpeed: 5
   isMoving: 0
-  isShootingStoped: 1
+  moveSpeed: 5
+  jumpVelocity: 9
+  isShootingStoped: 0
 --- !u!114 &114627560981139554
 MonoBehaviour:
   m_ObjectHideFlags: 1

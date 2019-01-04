@@ -8,7 +8,7 @@ public class PlayerMarkers : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
         {
             Instantiate(mark, transform.position, Quaternion.identity);
         }

@@ -18,7 +18,7 @@ public class Character : MonoBehaviour {
     public float jumpVelocity;
     protected float fallMultiplier = 2.5f;
 
-    void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
 
@@ -44,7 +44,15 @@ public class Character : MonoBehaviour {
             }
         }              
     }
-
+    protected void JumpLaunch()
+    {
+        Vector3 jumpLaunchDir = new Vector3(ChangeDirGS / 3, 1, 0); //Jump dir and arc
+        rb.velocity = jumpLaunchDir * jumpVelocity;
+        if (rb.velocity.y < 0) // smoother landing
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+    }
     protected void ChangeDirOnHit()
     {
         if (moveDir.x >= 1)
@@ -54,16 +62,6 @@ public class Character : MonoBehaviour {
         else if (moveDir.x <= -1)
         {
             ChangeDirGS = 1;
-        }
-    }
-
-    protected void JumpLaunch()
-    {
-        Vector3 jumpLaunchDir = new Vector3(ChangeDirGS / 3, 1, 0); //Jump dir and arc
-        rb.velocity = jumpLaunchDir * jumpVelocity;
-        if (rb.velocity.y < 0) // smoother landing
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
@@ -78,6 +76,7 @@ public class Character : MonoBehaviour {
             changeDir = value;
         }
     }
+
     public virtual void OnCollisionEnter(Collision other)
     {
         otherTag = other.gameObject.tag;
@@ -106,10 +105,11 @@ public class Character : MonoBehaviour {
             {
                 Destroy(gameObject);
                 Destroy(other.gameObject);
+                EnemyBehavior.countEnemies--;
+                Score.score++;
             }
         }
     }
-
     protected void OnTriggerExit(Collider other)
     {
         otherTag = other.gameObject.tag;

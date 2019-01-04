@@ -22,4 +22,9 @@ public class PlayerMover : Character {
             ChangeDirGS = 1;
         }
     }
+
+    public void TouchNavigation(float dir)
+    {
+        ChangeDirGS = dir;
+    }
 }
