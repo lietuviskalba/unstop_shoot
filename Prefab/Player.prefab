@@ -172,7 +172,7 @@ MonoBehaviour:
   isMoving: 0
   moveSpeed: 5
   jumpVelocity: 9
-  isShootingStoped: 0
+  isShootingStoped: 1
 --- !u!114 &114627560981139554
 MonoBehaviour:
   m_ObjectHideFlags: 1

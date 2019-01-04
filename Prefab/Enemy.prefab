@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
-  moveSpeed: 6
+  moveSpeed: 5.5
   jumpVelocity: 9.5
-  speedRange: 2
+  speedRange: 1
   unstuckBlast: 100
 --- !u!114 &114938770855425140
 MonoBehaviour:

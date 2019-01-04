@@ -48,13 +48,11 @@ public class EnemyBehavior : Character {
 
         if(currPos == prevPos)
         {
-            Debug.Log("I am STUCK");
             EnemyUnstuck(currPos);
         }
         else
         {
             prevPos = currPos;
-            Debug.Log("All is good in the hood");
         }
 
     }
