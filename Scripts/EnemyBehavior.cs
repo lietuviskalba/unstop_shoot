@@ -38,6 +38,7 @@ public class EnemyBehavior : Character {
         }
         else if (otherTag.Equals("Player"))
         {
+            Score.hasLost = true;
             Destroy(other.gameObject);
         }
     }

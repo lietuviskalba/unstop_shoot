@@ -21,7 +21,6 @@ public class Character : MonoBehaviour {
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
-
         isMoving = false; // No movement until touching ground
         ChangeDirGS = 1; // Set a default dir
     }
