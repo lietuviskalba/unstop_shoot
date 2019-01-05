@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class EnemyBehavior : Character {
 
-    public static int countEnemies;
     public float speedRange;
-    public float unstuckBlast;
-    private int currPos;
-    private int prevPos;
+    private float currPos;
+    private float prevPos;
 
     public override void Start()
     {
@@ -50,22 +48,22 @@ public class EnemyBehavior : Character {
 
     void CheckIfIdle()
     {
-        currPos = (int)transform.position.x;
+        currPos = transform.position.x;
 
-        if(currPos == prevPos)
+        if(currPos.ToString("F1").Equals(prevPos.ToString("F1")))
         {
-            EnemyUnstuck(currPos);
+            //gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+            BlastOutStuckOb();
         }
         else
         {
             prevPos = currPos;
         }
-
     }
 
-    void EnemyUnstuck(float xDir)
+    private void BlastOutStuckOb()
     {
-        Vector3 blastDir = new Vector3(xDir, 1, 0);
-        rb.AddForce(blastDir * 50f);
+        Vector3 jumpLaunchDir = new Vector3(1, 1, 0); //Jump dir and arc
+        rb.velocity = jumpLaunchDir * 25f;
     }
 }

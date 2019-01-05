@@ -6,34 +6,57 @@ public class DemageControl : MonoBehaviour {
 
     private GameObject[] spanwers;
 
-    public int maxEnemies;
-    public int minEnemies;
+    public static int countEnemies;
+    public static bool hasSpawnerSpawned;
 
-	void Start () {
+    public int maxEnemies;
+    int randSpawner;
+    public float waitTime;
+    private float waitNextSpawn;
+    private bool isMaxEnemiesReached;
+
+    void Start () {
 
         spanwers = GameObject.FindGameObjectsWithTag("Spawner");
+        countEnemies = 0;
+        waitNextSpawn = waitTime;
+        isMaxEnemiesReached = false;
+        hasSpawnerSpawned = false;
 	}
 	
-	void Update () {
-
-        int currEnemies = EnemyBehavior.countEnemies;
-        bool isSpawnStoped = EnemySpawner.hasSpawningStoped;
-
-        if (currEnemies >= maxEnemies && isSpawnStoped == false)
+	void Update ()
+    {
+        if (countEnemies >= maxEnemies)
         {
-            EnemySpawner.hasSpawningStoped = true;
+            isMaxEnemiesReached = true;
         }
-        else if (currEnemies <= minEnemies && isSpawnStoped == true)
+        else if (countEnemies <= maxEnemies)
         {
-            EnemySpawner.hasSpawningStoped = false;
+            NextSpawn();
+            SpawnEnemies();
+            isMaxEnemiesReached = false;
         }
     }
 
-    private void SpawnerActivation(bool state)
+    private void NextSpawn()
     {
-        foreach (GameObject spawner in spanwers)
+        if (hasSpawnerSpawned == true)
         {
-            spawner.SetActive(state);
+            waitNextSpawn -= Time.deltaTime;
+
+            if(waitNextSpawn <= 0)
+            {
+                hasSpawnerSpawned = false;
+                waitNextSpawn = waitTime;
+                randSpawner = Random.Range(0, spanwers.Length);
+            }
         }
+    }
+    private void SpawnEnemies()
+    {
+        if(isMaxEnemiesReached == false  && hasSpawnerSpawned == false)
+        {
+            spanwers[randSpawner].GetComponent<EnemySpawner>().SpawnEnemies();
+        }   
     }
 }

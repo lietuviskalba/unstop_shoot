@@ -104,7 +104,7 @@ public class Character : MonoBehaviour {
             {
                 Destroy(gameObject);
                 Destroy(other.gameObject);
-                EnemyBehavior.countEnemies--;
+                DemageControl.countEnemies --;
                 Score.score++;
             }
         }

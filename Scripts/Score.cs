@@ -35,7 +35,7 @@ public class Score : MonoBehaviour {
     {
         if (hasLost == true && hasWon == false)
         {
-            EndLevelCard("GAME OVER \n (Reset Level)", Color.red);
+            EndLevelCard("GAME OVER \n(Reset Level)", Color.red);
         }
 
         if (score >= goalScore && hasLost == false)
@@ -67,7 +67,7 @@ public class Score : MonoBehaviour {
     {
         tint.SetActive(true);
         tint.GetComponentInChildren<Text>().text = message;
-        tint.GetComponentInChildren<Text>().color = color;
+        tint.GetComponentInChildren<Text>().color = color;       
     }
 
     private void DisplayScore()

@@ -16,44 +16,23 @@ public class EnemySpawner : MonoBehaviour {
     private int randDir;
 
     public static bool hasSpawningStoped;
-    private bool delaySpawn;
 
     void Start()
     {
         hasSpawningStoped = false;
-        delaySpawn = true;
-        Invoke("SpawnEnemies", 3f);
     }
 
-    void Update()
-    {
-        MaxEnemies();
-    }
-
-    void MaxEnemies()
-    {
-        if (hasSpawningStoped == true)
-        {
-            return;
-        }
-
-        if (delaySpawn == false)
-        {
-            SpawnEnemies();
-        }         
-    }
-
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
         if (Time.time >= nextSpawn)
         {
-            delaySpawn = false;
             nextSpawn = Time.time + spawnRate;
             spawnRate = Random.Range(minRate, maxRate);
             randDir = (int)Random.Range(0, 2) * 2 - 1;
             enemy.GetComponent<EnemyBehavior>().ChangeDirGS = randDir;
+            DemageControl.countEnemies++;
+            DemageControl.hasSpawnerSpawned = true;
             Instantiate(enemy, transform.position, Quaternion.identity);
-            EnemyBehavior.countEnemies += 1;
         }                    
     }
 }

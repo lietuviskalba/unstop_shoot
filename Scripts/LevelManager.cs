@@ -11,6 +11,12 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(currSceneIndex + 1);
     }
 
+    public void LoadLastScene()
+    {
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(sceneCount - 1);
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -24,5 +30,17 @@ public class LevelManager : MonoBehaviour {
     public void QuiteGame()
     {
         Application.Quit();
+    }
+
+    public void PauseGame()
+    {
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }
