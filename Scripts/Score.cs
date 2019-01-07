@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
-    public Text txtScore;
-    public GameObject tint;
+    private GameObject endLvlCard;
+    private Text txtScore;
 
     public static int score;
     public int goalScore;
@@ -16,10 +16,12 @@ public class Score : MonoBehaviour {
 
 	void Start () {
 
-        tint.SetActive(false);
+        endLvlCard = GameObject.Find("End level card");
+        txtScore = GameObject.Find("Score").GetComponent<Text>();
 
-        hasWon = false;
-        hasLost = false;
+        endLvlCard.SetActive(false);
+        SetWinLossGameState(false);
+
         score = 0;
 
         DisplayScore();
@@ -51,23 +53,27 @@ public class Score : MonoBehaviour {
 
         if (hasWon == true)
         {
-            hasWon = false;
-            hasLost = false;
+            SetWinLossGameState(false);
             lm.LoadNextLevel();
         }
         if (hasLost == true)
         {
-            hasWon = false;
-            hasLost = false;
+            SetWinLossGameState(false);
             lm.RestartGame();
         }
     }
 
+    private static void SetWinLossGameState(bool state)
+    {
+        hasWon = state;
+        hasLost = state;
+    }
+
     private void EndLevelCard(string message, Color color)
     {
-        tint.SetActive(true);
-        tint.GetComponentInChildren<Text>().text = message;
-        tint.GetComponentInChildren<Text>().color = color;       
+        endLvlCard.SetActive(true);
+        endLvlCard.GetComponentInChildren<Text>().text = message;
+        endLvlCard.GetComponentInChildren<Text>().color = color;       
     }
 
     private void DisplayScore()

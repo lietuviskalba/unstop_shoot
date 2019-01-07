@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneCount - 1);
     }
 
+    public void LoadSpecificLevel(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

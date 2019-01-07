@@ -8,10 +8,10 @@ public class PlayerMover : Character {
 
     void FixedUpdate()
     {
-        NavigationButtons();
+        KeyboardKeyNavigation();
     }
 
-    private void NavigationButtons()
+    private void KeyboardKeyNavigation()
     {
         if (Input.GetKey("a"))
         {

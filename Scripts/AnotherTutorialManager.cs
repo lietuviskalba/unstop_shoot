@@ -23,12 +23,13 @@ public class AnotherTutorialManager : MonoBehaviour {
         incIndex = 0;
         prevIndex = incIndex;
 
+        //Set all of the slides off at start
         for (int i = 0; i < childCount; i++)
         {
             children[i] = parent.GetChild(i);
             children[i].gameObject.SetActive(false);
         }
-
+        //Keep active only the first slide at start
         children[0].gameObject.SetActive(true);
     }
 	
@@ -37,17 +38,15 @@ public class AnotherTutorialManager : MonoBehaviour {
         try
         {
             incIndex++;
-            children[incIndex].gameObject.SetActive(true);
-            children[prevIndex].gameObject.SetActive(false);
-            prevIndex = incIndex;
+            children[incIndex].gameObject.SetActive(true); //Activate next slide
+            children[prevIndex].gameObject.SetActive(false); //Disable prev slide
+            prevIndex = incIndex; //Set the prev slide with the curr index, before inc
         }
-        catch(Exception e)
+        catch(Exception)
         {
+            //Before running out of index in the array. Go back to menu.
             LevelManager lm = gameObject.AddComponent<LevelManager>();
             lm.LoadStartScene();
         }
-        
-
-        
     }
 }

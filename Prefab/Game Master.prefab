@@ -53,8 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09738ca1f5a371a429327842a9cfa426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtScore: {fileID: 0}
-  tint: {fileID: 0}
   goalScore: 3
 --- !u!114 &114416220246954032
 MonoBehaviour:
@@ -80,4 +78,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e71411254e7d0342921c8783971007b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnJumpPad: {fileID: 0}

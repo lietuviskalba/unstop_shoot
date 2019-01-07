@@ -8,7 +8,9 @@ public class BulletBehavior : MonoBehaviour
     {
         string otherTag = other.gameObject.tag;
 
-        if (otherTag.Equals("Side_wall") || otherTag.Equals("Ground_platform") || other.Equals("Player"))
+        if (otherTag.Equals("Side_wall") || 
+            otherTag.Equals("Ground_platform") || 
+            other.Equals("Player"))
         {
             Destroy(gameObject);
         }

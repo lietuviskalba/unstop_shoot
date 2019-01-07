@@ -10,7 +10,7 @@ public class DemageControl : MonoBehaviour {
     public static bool hasSpawnerSpawned;
 
     public int maxEnemies;
-    int randSpawner;
+    private int randSpawner;
     public float waitTime;
     private float waitNextSpawn;
     private bool isMaxEnemiesReached;
@@ -56,7 +56,14 @@ public class DemageControl : MonoBehaviour {
     {
         if(isMaxEnemiesReached == false  && hasSpawnerSpawned == false)
         {
-            spanwers[randSpawner].GetComponent<EnemySpawner>().SpawnEnemies();
+            try
+            {
+                spanwers[randSpawner].GetComponent<EnemySpawner>().SpawnEnemies();
+            }
+            catch
+            {
+                Debug.LogWarning("Man! There are no spawners in the level!");
+            }
         }   
     }
 }

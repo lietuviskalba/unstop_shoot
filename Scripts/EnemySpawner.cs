@@ -13,14 +13,6 @@ public class EnemySpawner : MonoBehaviour {
     [Range(2f, 10f)]
     public float spawnRate;
     private float nextSpawn;
-    private int randDir;
-
-    public static bool hasSpawningStoped;
-
-    void Start()
-    {
-        hasSpawningStoped = false;
-    }
 
     public void SpawnEnemies()
     {
@@ -28,8 +20,6 @@ public class EnemySpawner : MonoBehaviour {
         {
             nextSpawn = Time.time + spawnRate;
             spawnRate = Random.Range(minRate, maxRate);
-            randDir = (int)Random.Range(0, 2) * 2 - 1;
-            enemy.GetComponent<EnemyBehavior>().ChangeDirGS = randDir;
             DemageControl.countEnemies++;
             DemageControl.hasSpawnerSpawned = true;
             Instantiate(enemy, transform.position, Quaternion.identity);

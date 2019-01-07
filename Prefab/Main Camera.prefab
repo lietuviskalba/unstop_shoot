@@ -101,4 +101,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  BoundPos: {x: 3.5, y: 4.5, z: 0}
+  boundPos: {x: 3.5, y: 4.5, z: 0}

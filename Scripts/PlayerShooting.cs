@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour {
 
-    public GameObject textHolder;
     public GameObject ammo;
+    private GameObject textHolder;
     private GameObject player;
     private GameObject cloneShots;
     
-    public Text txtNextShot;
+    private Text txtNextShot;
 
     public float shotSpeed;
     public float fireRate;
@@ -21,7 +21,9 @@ public class PlayerShooting : MonoBehaviour {
     void Start()
     {
         // For developing purposes, to disable/enable shooting
+        textHolder = gameObject.transform.GetChild(0).gameObject;// Get first object from parent
         player = GameObject.FindGameObjectWithTag("Player");
+        txtNextShot = GameObject.Find("Next shot").GetComponent<Text>();
         hasShootStop = player.GetComponent<PlayerMover>().isShootingStoped;
     }
 
@@ -41,6 +43,7 @@ public class PlayerShooting : MonoBehaviour {
 
     private void DisplayNextShot()
     {
+        //Match UI coord with game object coord
         Vector3 nextShotPos = Camera.main.WorldToScreenPoint(textHolder.transform.position);
         txtNextShot.transform.position = nextShotPos;
         countSecToNextShot -= Time.deltaTime;
@@ -57,6 +60,6 @@ public class PlayerShooting : MonoBehaviour {
             txtNextShot.color = Color.red;
         }
 
-        txtNextShot.text = countSecToNextShot.ToString("F1");
+        txtNextShot.text = countSecToNextShot.ToString("F1"); // Display on UI element
     }
 }

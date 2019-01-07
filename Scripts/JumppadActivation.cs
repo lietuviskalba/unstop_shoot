@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class JumppadActivation : MonoBehaviour {
 
     private GameObject[] jump_pads;
-    public Button btnJumpPad;
+    private GameObject btnJumpPad;
 
     private bool isPadActive;
 
-	void Start () {
+	void Start ()
+    {
+        btnJumpPad = GameObject.Find("Jump pad activtion");
+        jump_pads  = GameObject.FindGameObjectsWithTag("Jump_pad");
 
-        jump_pads = GameObject.FindGameObjectsWithTag("Jump_pad");
         PadActivationConfiguration(true, "Jump pad: ON", Color.green);
 	}
 
@@ -39,7 +41,7 @@ public class JumppadActivation : MonoBehaviour {
     {
         isPadActive = padCondition;
         btnJumpPad.GetComponentInChildren<Text>().text = btnTxt;
-        btnJumpPad.GetComponent<Image>().color = btnColor;
+        btnJumpPad.transform.GetChild(0).GetComponent<Image>().color = btnColor;
         foreach (GameObject jump_pad in jump_pads)
         {
             jump_pad.SetActive(padCondition);

@@ -7,7 +7,7 @@ public class CameraControll : MonoBehaviour {
     public GameObject player;
 
     private Vector3 velocity;
-    public Vector3 BoundPos;
+    public Vector3 boundPos;
 
     private float smoothTime;
 
@@ -18,6 +18,11 @@ public class CameraControll : MonoBehaviour {
 	
 	void LateUpdate () {
 
+        CameraTrackPlayer();
+	}
+
+    void CameraTrackPlayer()
+    {
         if (player != null)
         {
             float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTime);
@@ -26,13 +31,13 @@ public class CameraControll : MonoBehaviour {
             transform.position = new Vector3(posX, posY, transform.position.z);
             CameraBounds();
         }
-	}
+    }
 
     void CameraBounds()
     {
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, BoundPos.x * (-1), BoundPos.x),
-            Mathf.Clamp(transform.position.y, BoundPos.y, BoundPos.y * 4),
+            Mathf.Clamp(transform.position.x, boundPos.x * (-1), boundPos.x),
+            Mathf.Clamp(transform.position.y, boundPos.y, boundPos.y * 4),
             transform.position.z);
     }
 }

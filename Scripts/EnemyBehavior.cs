@@ -10,8 +10,9 @@ public class EnemyBehavior : Character {
 
     public override void Start()
     {
-        base.Start();
+        base.Start(); // use this to also include the parents logic
         RandEnemySpeed(speedRange);
+        RandSpawnDir();
         InvokeRepeating("CheckIfIdle", 5f, 3f);
     }
 
@@ -22,6 +23,11 @@ public class EnemyBehavior : Character {
         float maxSpeed = tempSpeed + range;
         moveSpeed = Random.Range(minSpeed, maxSpeed);
         return moveSpeed;
+    }
+    public void RandSpawnDir()
+    {
+        int randDir = (int)Random.Range(0, 2) * 2 - 1;
+        ChangeDirGS = randDir;
     }
 
     public override void OnCollisionEnter(Collision other)
@@ -63,7 +69,8 @@ public class EnemyBehavior : Character {
 
     private void BlastOutStuckOb()
     {
-        Vector3 jumpLaunchDir = new Vector3(1, 1, 0); //Jump dir and arc
-        rb.velocity = jumpLaunchDir * 25f;
+        int randDir = (int)Random.Range(0, 2) * 2 - 1;
+        Vector3 jumpLaunchDir = new Vector3(randDir * 2, 1, 0); //Jump dir and arc
+        rb.velocity = jumpLaunchDir * 50f;
     }
 }
